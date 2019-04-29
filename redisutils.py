@@ -1,6 +1,7 @@
 import uuid
 import time
 import pickle
+from redis import Redis
 
 
 class AcquireTimeoutError(Exception):
@@ -15,7 +16,7 @@ class RedisLock:
     """
 
     @classmethod
-    def register_redis(cls, redis):
+    def register_redis(cls, redis: Redis):
         cls.redis = redis
 
     def __init__(self, lock_key, acquire_time=10, lock_timeout=60):
@@ -98,7 +99,7 @@ class RedisCache:
     """
 
     @classmethod
-    def register_redis(cls, redis):
+    def register_redis(cls, redis: Redis):
         cls.redis = redis
 
     @staticmethod
